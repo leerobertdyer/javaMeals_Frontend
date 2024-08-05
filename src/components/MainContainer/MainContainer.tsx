@@ -11,7 +11,7 @@ export default function MainContainer() {
 
     useEffect(() => {
         async function getAllMeals() {
-            const resp = await fetch("http://java-meals.us-east-1.elasticbeanstalk.com/api/meals")
+            const resp = await fetch("java.leedyer.com/api/meals")
             if (resp) {
                 const data = await resp.json();
                 console.log(data)
@@ -25,7 +25,7 @@ export default function MainContainer() {
         <>
         <div className="
         flex flex-col 
-        items-center justify-between 
+        items-center justify-center 
         bg-javaGray 
         border-4 border-javaTeal-light 
         rounded-xl
@@ -34,8 +34,6 @@ export default function MainContainer() {
         shadow-javaTeal-dark
         shadow-xl
         ">
-            Here is the magic box to upload meals.
-
             <div className="flex justify-between w-full p-4">
                 <Button onClick={() => console.log('b1')} title="Add A Meal"/>
                 <Button onClick={() => console.log('b2')} title="View All Meals"/>
