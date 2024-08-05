@@ -11,7 +11,7 @@ export default function MainContainer() {
 
     useEffect(() => {
         async function getAllMeals() {
-            const resp = await fetch("java.leedyer.com/api/meals")
+            const resp = await fetch("https://java.leedyer.com/api/meals")
             if (resp) {
                 const data = await resp.json();
                 console.log(data)
