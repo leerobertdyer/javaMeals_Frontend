@@ -1,25 +1,18 @@
-import { useEffect, useState } from "react";
 import Button from "../Button/Button";
+import { Meal } from "../../App";
+import MealItem from "../MealItem/MealItem";
 
-export type Meal = {
-    name: string;
-    ingredients: string[];
+type PropsDefinition = {
+    getAllMeals: () => void;
+    deleteAllMeals: () => void;
+    deleteMeal: (id: string) => void;
+    updateMeal: (meal: Meal) => void;
+    allMeals: Meal[];
+    clickAddMeal: (meal: Meal | undefined) => void;
 }
 
-export default function MainContainer() {
-    const [allMeals, setAllMeals] = useState<Meal[]>([])
-
-    useEffect(() => {
-        async function getAllMeals() {
-            const resp = await fetch("https://java.leedyer.com/api/meals")
-            if (resp) {
-                const data = await resp.json();
-                console.log(data)
-                setAllMeals(data)
-            }
-        }
-        getAllMeals()
-    }, [])
+export default function MainContainer(props: PropsDefinition) {
+    const {getAllMeals, deleteAllMeals, deleteMeal, clickAddMeal, updateMeal, allMeals } = props;
 
     return (
         <>
@@ -30,17 +23,18 @@ export default function MainContainer() {
         border-4 border-javaTeal-light 
         rounded-xl
         w-[90dvw] max-w-[50rem]
-        h-[20rem]
+        h-[10rem]
+        mb-[4rem]
         shadow-javaTeal-dark
         shadow-xl
         ">
             <div className="flex justify-between w-full p-4">
-                <Button onClick={() => console.log('b1')} title="Add A Meal"/>
-                <Button onClick={() => console.log('b2')} title="View All Meals"/>
-                <Button onClick={() => console.log('b3')} title="Delete All Meals"/>
+                <Button onClick={() => clickAddMeal(undefined)} title="Add A Meal"/>
+                <Button onClick={() => getAllMeals()} title="View All Meals"/>
+                <Button onClick={() => deleteAllMeals()} title="Delete All Meals"/>
             </div>
         </div>
-        {allMeals.map(meal => <h1>{meal.name}</h1>)}
+        {allMeals.map((meal, key) => <MealItem key={key} updateMeal={updateMeal} deleteMeal={deleteMeal} meal={meal}/>)}
         </>
     )
 }
