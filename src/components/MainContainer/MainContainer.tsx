@@ -34,7 +34,7 @@ export default function MainContainer(props: PropsDefinition) {
                 <Button onClick={() => deleteAllMeals()} title="Delete All Meals"/>
             </div>
         </div>
-        {allMeals.map((meal, key) => <MealItem key={key} updateMeal={updateMeal} deleteMeal={deleteMeal} meal={meal}/>)}
+        {[...allMeals].reverse().map((meal, key) => <MealItem key={key} updateMeal={updateMeal} deleteMeal={deleteMeal} meal={meal}/>)}
         </>
     )
 }

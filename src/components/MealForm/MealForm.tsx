@@ -62,7 +62,7 @@ export default function MealForm({
             text-javaBlack 
             border border-javaRed-dark"
         >
-          <h1>{currentMeal ? `Let's edit your "${currentMeal.name}"` : "Add Your Latest Meal} (!_!)"}</h1>
+          <h1>{currentMeal ? `Let's edit your "${currentMeal.name}"` : "Add Your Latest Meal (!_!)"}</h1>
           <input
             className="bg-white text-javaBlack p-4 rounded-xl"
             type="text"
